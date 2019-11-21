@@ -1,6 +1,6 @@
 <style>
   body{
-    background: url("../../../assets/user_bkgd.png");
+    /*background: url("../../../assets/user_bkgd.png");*/
     background-position: center 10%;
     background-size:cover;
     min-height: 100%;
@@ -13,8 +13,8 @@
   .login-card{
     background: rgba(49, 65, 78, 0.78);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: blur(20px);
-    margin-top: 200px;
+    /*backdrop-filter: blur(20px);*/
+    margin-top: 50px;
     box-shadow: 0px 5px 20px rgba(29, 38, 49, 0.8);
     padding: 20px;
   }
@@ -25,35 +25,42 @@
 </style>
 <template>
   <div class="reg-bk">
-    <Col span="8" offset="8" class="login-card">
-      <h1 style="color: white; font-size: 60px; font-weight: lighter">注册账号</h1>
+    <Col span="12" offset="6" class="login-card">
+      <h1 style="color: white; font-size: 60px; font-weight: lighter">CMIS注册账号</h1>
       <Form ref="formInline" :model="formInline" :rules="ruleInline" inline style="margin-top: 50px">
         <Row>
         <FormItem prop="user" style="width: 80%;">
-          <Input type="text" v-model="formInline.user" placeholder="Username">
+          <Input type="text" v-model="formInline.user" placeholder="用户名">
             <Icon type="ios-person-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
         </Row>
         <Row>
           <FormItem prop="mail" style="width: 80%;">
-            <Input v-model="formInline.mail" placeholder="E-mail">
-              <Icon type="ios-mail-outline" slot="prepend"></Icon>
+            <Input v-model="formInline.phone" placeholder="电话">
+              <Icon type="ios-person-outline" slot="prepend"></Icon>
             </Input>
           </FormItem>
         </Row>
         <Row>
         <FormItem prop="password" style="width: 80%;">
-          <Input type="password" v-model="formInline.password" placeholder="Password">
+          <Input type="password" v-model="formInline.password" placeholder="密码">
             <Icon type="ios-lock-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
         </Row>
         <Row>
           <FormItem prop="passwdCheck" style="width: 80%;">
-            <Input type="password" v-model="formInline.passwdCheck"  placeholder="Repeat password">
+            <Input type="password" v-model="formInline.passwdCheck"  placeholder="重复密码">
               <Icon type="ios-lock-outline" slot="prepend"></Icon>
             </Input>
+          </FormItem>
+        </Row>
+        <Row>
+          <FormItem prop="type" style="width: 80%;">
+            <i-select v-model="model4" style="width:100%; font-size: 20px" size="large">
+              <i-option v-for="item in typeList" :value="item.value" v-bind:key="item.name">{{ item.name }}</i-option>
+            </i-select>
           </FormItem>
         </Row>
         <Row>
@@ -106,11 +113,20 @@ export default {
       modal1: false,
       modal2: false,
       modal3: false,
+      model4: 0,
+      typeList: [{
+        name: '银行方',
+        value: 0
+      }, {
+        name: '借贷方',
+        value: 1
+      }],
       formInline: {
         user: '',
         password: '',
         passwdCheck: '',
-        mail: ''
+        phone: '',
+        type: 0
       },
       ruleInline: {
         user: [
@@ -123,9 +139,8 @@ export default {
         passwdCheck: [
           {validator: validatePassCheck, trigger: 'blur'}
         ],
-        mail: [
-          { required: true, message: '请填写邮箱', trigger: 'blur' },
-          { type: 'email', message: '邮箱格式不正确', trigger: 'blur' }
+        phone: [
+          { required: true, message: '请填写手机号码', trigger: 'blur' }
         ]
       }
     }
@@ -142,21 +157,22 @@ export default {
     },
     ok () {
       // this.$router.push({path: '/user/login'})
-      // console.log(this.formInline)
+      console.log(this.formInline)
+      console.log(this.model4)
       this.$axios({
         method: 'post',
-        url: 'http://101.132.73.215:8080/register',
+        url: '/register',
         data: {
           'username': this.formInline.user,
           'password': this.formInline.password,
-          'phone': this.formInline.mail,
-          'type': 1
+          'phone': this.formInline.phone,
+          'type': this.model4
         },
         withCredentials: true
       }).then(response => {
         console.log('API response\n', response)
         let status = response.data.state
-        if (status === 1) {
+        if (status === 200) {
           this.modal3 = true
         } else {
           this.modal2 = true

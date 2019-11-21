@@ -18,7 +18,7 @@ axios.defaults.withCredentials = true // ajax with coockie
 Vue.prototype.$axios = axios
 Vue.prototype.$ajax = axios
 /* axios base url: change it when dispatch or integrate testing */
-axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'http://101.132.73.215:8080'
 /* store in vuex  */
 const store = new Vuex.Store({
   state: {

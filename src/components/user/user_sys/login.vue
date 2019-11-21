@@ -1,7 +1,7 @@
 login page
 <style>
   body{
-    background: url("../../../assets/user_bkgd.png");
+    /*background: url("../../../assets/user_bkgd.png");*/
     background-position: center 10%;
     background-size:cover;
     min-height: 100%;
@@ -16,7 +16,7 @@ login page
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: blur(20px);
     border-radius: 30px;
-    margin-top: 200px;
+    margin-top: 50px;
     box-shadow: 0px 5px 20px rgba(29, 38, 49, 0.8);
     padding: 20px;
   }
@@ -27,6 +27,7 @@ login page
 </style>
 <template>
   <div class="reg-bk">
+    <h1 style="color: white; font-size: 60px; font-weight: lighter">CMIS</h1>
     <Col span="8" offset="8" class="login-card">
       <h1 style="color: white; font-size: 60px; font-weight: lighter">登 录</h1>
       <router-link to="/user/register">
@@ -62,7 +63,7 @@ login page
     <Modal
       v-model="model2"
       title="提示">
-      <h1 style="text-align: center">用户名"{{this.formInline.user}}"不存在，请先注册。</h1>
+      <h1 style="text-align: center">登录失败，请检查账密！</h1>
     </Modal>
     <Modal
       v-model="model3"
@@ -123,32 +124,17 @@ export default {
             params: {'username': this.formInline.user, 'password': this.formInline.password},
             withCredentials: true
           }).then(response => {
-            // console.log('API: /login/submit/\n', response)
-            if (response.data.status === 200 && response.data.roles === '[USER]') {
+            console.log('API: /login/\n', response)
+            if (response.data.state === 200 && response.data.message === '[CUSTOMER, USER]') {
               Cookies.set('login', 'USER', { expires: 1, path: '' })
               Cookies.set('name', response.data.user)
               this.$router.push({path: '/'})
-            } else if (response.data.status === 200 && response.data.roles === '[ROLE_ADMIN]') {
+            } else if (response.data.state === 200 && response.data.message === '[BANK, USER]') {
               Cookies.set('login', 'ADMIN', { expires: 1, path: '' })
               Cookies.set('name', response.data.user)
               this.$router.push({path: '/admin'})
             } else {
-              this.$axios({
-                method: 'post',
-                url: '/api/find_a_user',
-                data: {'username': this.formInline.user},
-                withCredentials: true
-              }).then(response => {
-                console.log('API: /login/submit/\n', response)
-                let status = response.data.state
-                if (status === 404) {
-                  this.model2 = true
-                } else if (status === 1) {
-                  this.model1 = true
-                } else {
-                  this.model3 = true
-                }
-              })
+              this.model2 = true
             }
           })
         } else {

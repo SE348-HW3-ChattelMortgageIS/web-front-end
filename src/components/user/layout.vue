@@ -41,7 +41,7 @@
         <Menu mode="horizontal" theme="dark" active-name="1">
           <router-link to="/">
           <div class="layout-logo" style="background: rgba(255,255,255,0); margin-top: -10px; width: 350px;">
-            <img class="ebk-logo"><p style="font-size: 30px; font-weight: bolder; color: #fff">Ebook 图书交易网站</p>
+            <img class="ebk-logo"><p style="font-size: 30px; font-weight: bolder; color: #fff">CMIS动产抵押系统</p>
           </div>
           </router-link>
           <div class="layout-nav" style="width: 700px;">
@@ -74,7 +74,7 @@
             <Tooltip placement="bottom" theme="light">
               <Avatar :src="this.myAvatar" />
               <div slot="content">
-                <Row><p style="text-align: center; font-size: 25px;" class="user-info">欢迎你! {{this.myName}}</p></Row>
+                <Row><p style="text-align: center; font-size: 25px;" class="user-info">你好！</p></Row>
                 <router-link to="/account"><Button style="margin-bottom: 5px; font-size: 20px;" type="primary">个人中心</Button></router-link>
                   <router-link to="/user/login">
                     <Button style="margin-bottom: 5px; font-size: 20px;" @click="logout">退出登录</Button>
@@ -103,19 +103,7 @@ export default {
     }
   },
   mounted () {
-    this.$axios({
-      method: 'get',
-      url: '/api/get_my_info',
-      withCredentials: true
-    }).then(response => {
-      console.log('API response\n', response)
-      this.myName = response.data.username
-      if (response.data.avatar_path === 'none') {
-        this.myAvatar = require('../../assets/avatar.jpg')
-      } else {
-        this.myAvatar = response.data.avatar_path
-      }
-    })
+    this.myAvatar = require('../../assets/avatar.jpg')
   },
   methods: {
     changeTheme () {

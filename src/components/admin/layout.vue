@@ -46,7 +46,7 @@
         <Menu mode="horizontal" theme="dark" active-name="1">
           <router-link to="/admin">
             <div class="layout-logo" style="background: rgba(255,255,255,0); margin-top: -10px; width: 300px;">
-              <img class="ebk-logo"><p style="font-size: 30px; font-weight: lighter; color: #fff;">Ebook<span style="font-weight: bolder">管理系统</span></p>
+              <img class="ebk-logo"><p style="font-size: 30px; font-weight: lighter; color: #fff;">CMIS<span style="font-weight: bolder">动产抵押管理系统</span></p>
             </div>
           </router-link>
           <div class="layout-nav" style="width: 800px;">
@@ -84,7 +84,7 @@
             <Tooltip placement="bottom" theme="light">
               <Avatar :src="this.avatar" style="margin-left: -20px"/>
               <div slot="content">
-                <Row><p style="text-align: center; font-size: 25px;" class="user-info">欢迎你! 管理员</p></Row>
+                <Row><p style="text-align: center; font-size: 25px;" class="user-info">欢迎你! xx银行</p></Row>
                 <router-link to="/user/login">
                   <Button style="margin-bottom: 5px; font-size: 20px; width: 100%" @click="logout">退出登录</Button>
                 </router-link>
