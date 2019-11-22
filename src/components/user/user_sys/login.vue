@@ -27,9 +27,8 @@ login page
 </style>
 <template>
   <div class="reg-bk">
-    <h1 style="color: white; font-size: 60px; font-weight: lighter">CMIS</h1>
     <Col span="8" offset="8" class="login-card">
-      <h1 style="color: white; font-size: 60px; font-weight: lighter">登 录</h1>
+      <h1 style="color: white; font-size: 60px; font-weight: lighter">CMIS 登 录</h1>
       <router-link to="/user/register">
         <Button style="height: 50px; width: 100px; font-size: 25px; margin-top: 10px">注 册</Button>
       </router-link>

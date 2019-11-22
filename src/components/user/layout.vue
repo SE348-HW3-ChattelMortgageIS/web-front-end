@@ -41,8 +41,8 @@
       <Header style="z-index: 99">
         <Menu mode="horizontal" theme="dark" active-name="1">
           <router-link to="/">
-          <div class="layout-logo" style="background: rgba(255,255,255,0); margin-top: -10px; width: 350px;">
-            <img class="ebk-logo"><p style="font-size: 30px; font-weight: bolder; color: #fff">CMIS动产抵押系统</p>
+          <div class="layout-logo" style="background: rgba(255,255,255,0); margin-top: -10px; width: 550px;">
+            <img class="ebk-logo"><p style="font-size: 30px; font-weight: bolder; color: #fff">CMIS动产抵押系统 <span style="font-weight: lighter"> 借贷方页面</span></p>
           </div>
           </router-link>
           <div class="layout-nav" style="width: 450px;">

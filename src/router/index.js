@@ -102,10 +102,14 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.name !== 'login' && to.name !== 'register' && to.name.substr(0, 2) !== 'ad') {
     const isLogin = Cookies.get('login')
-    if (isLogin === 'USER' || isLogin === 'ADMIN') {
+    if (isLogin === 'USER') {
       next()
     } else {
-      router.push({name: 'login'})
+      if (isLogin === 'ADMIN') {
+        router.push({name: 'ad_index'})
+      } else {
+        router.push({name: 'login'})
+      }
     }
   } else if (to.name.substr(0, 2) === 'ad') {
     const isLogin = Cookies.get('login')
