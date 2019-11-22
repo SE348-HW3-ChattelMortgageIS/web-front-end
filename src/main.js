@@ -9,6 +9,7 @@ import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import Vuex from 'vuex'
 import axios from '../node_modules/axios'
+import echarts from 'echarts'
 
 Vue.use(iView)
 Vue.use(ElementUI)
@@ -17,6 +18,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.defaults.withCredentials = true // ajax with coockie
 Vue.prototype.$axios = axios
 Vue.prototype.$ajax = axios
+Vue.prototype.$echarts = echarts
 /* axios base url: change it when dispatch or integrate testing */
 axios.defaults.baseURL = 'http://101.132.73.215:8080'
 /* store in vuex  */
