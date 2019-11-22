@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 80px">
-    <Divider orientation="left" class="prop">收藏夹</Divider>
+    <Divider orientation="left" class="prop">申请抵押</Divider>
     <Row style="max-width: 1200px; margin: 0 auto;">
       <grid :books="this.books_rec"></grid>
     </Row>
