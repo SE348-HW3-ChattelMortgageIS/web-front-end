@@ -25,7 +25,8 @@
     text-align: center;
   }
   .ebk-logo{
-    background: url("../../assets/ebook-logo.svg");
+    background: url("../../assets/ebook-logo.png");
+    background-size:55px 55px;
     height: 55px;
     width: 55px;
     float: left;
@@ -46,32 +47,32 @@
         <Menu mode="horizontal" theme="dark" active-name="1">
           <router-link to="/admin">
             <div class="layout-logo" style="background: rgba(255,255,255,0); margin-top: -10px; width: 300px;">
-              <img class="ebk-logo"><p style="font-size: 30px; font-weight: lighter; color: #fff;">CMIS<span style="font-weight: bolder">动产抵押管理系统</span></p>
+              <img class="ebk-logo"><p style="font-size: 30px; font-weight: lighter; color: #fff;">CMIS <span style="font-weight: bolder"> 银行方管理</span></p>
             </div>
           </router-link>
           <div class="layout-nav" style="width: 800px;">
             <router-link to="/admin/book">
               <MenuItem name="1-2">
-                <Icon type="ios-book" />
-                <span>图书管理</span>
+                <Icon type="md-pricetags" />
+                <span>存单管理</span>
               </MenuItem>
             </router-link>
             <router-link to="/admin/user">
               <MenuItem name="1-3">
-                <Icon type="ios-contact" />
-                <span>用户管理</span>
+                <Icon type="md-alert" />
+                <span>查看警报</span>
               </MenuItem>
             </router-link>
             <router-link  to="/admin/order">
               <MenuItem name="1-5">
                 <Icon type="md-reorder" />
-                <span>图书销量</span>
+                <span>赎回管理</span>
               </MenuItem>
             </router-link>
             <router-link  to="/admin/data">
               <MenuItem name="1-5">
                 <Icon type="ios-cube" />
-                <span>用户消费</span>
+                <span>状态监控</span>
               </MenuItem>
             </router-link>
             <el-switch
@@ -96,7 +97,7 @@
       <Content>
         <router-view></router-view>
       </Content>
-      <Footer class="layout-footer-center" style="float: bottom">2019 &copy; Wei Xiao-Miao SE218</Footer>
+      <Footer class="layout-footer-center" style="float: bottom">2019 &copy; github.com/SE348-HW3-ChattelMortgageIS</Footer>
     </Layout>
   </div>
 </template>

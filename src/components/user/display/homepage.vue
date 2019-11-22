@@ -1,20 +1,24 @@
 <template>
   <div style="margin-top: 80px">
-    <slider style="margin-top: -20px"></slider>
-    <Row align="middle" style="margin-top: 20px" class="home-row">
-      <Col span="22" offset="1"><Input @on-search="search" search enter-button placeholder="图书搜索" style="border-color:  #acc6aa" v-model="keyword"/></Col>
+    <Row align="middle" type="flex" justify="center" style="height: 20%">
+      <h1 class="ad-title">欢迎使用CMIS动产抵押管理信息系统</h1>
     </Row>
-    <Divider orientation="left" class="prop">为你推荐</Divider>
-    <Row class="home-row">
-      <grid :books="this.books_rec"></grid>
-    </Row>
-    <Divider orientation="left" class="prop">大众品味</Divider>
-    <Row class="home-row">
-      <grid :books="this.books_rec"></grid>
-    </Row>
-    <Divider orientation="left" class="prop">甄门别类</Divider>
-    <Row class="home-row">
-      <grid :books="this.books_rec"></grid>
+    <Row align="middle" type="flex" justify="center" style="margin-bottom: 20px; margin-top: 20px;">
+      <Col span="12"><div class="md-wrapper">
+        <router-link to="/collections">
+          <Card class="ad-card">
+            申请抵押<br>
+            <Icon type="md-pricetags" size="130"/>
+          </Card>
+        </router-link>
+      </div></Col>
+      <Col span="12"><div class="md-wrapper">
+        <router-link to="/market">
+          <Card class="ad-card">申请赎回<br>
+            <Icon type="md-alert" size="130" />
+          </Card>
+        </router-link>
+      </div></Col>
     </Row>
   </div>
 </template>
@@ -37,18 +41,6 @@ export default {
     }
   },
   mounted () {
-    this.$axios({
-      method: 'post',
-      url: '/api/find_book_with_page',
-      data: {
-        'offset': 0,
-        'limit': 8
-      },
-      withCredentials: true
-    }).then(response => {
-      console.log('API response\n', response)
-      this.books_rec = response.data
-    })
   },
   data () {
     return {
@@ -72,5 +64,33 @@ export default {
   .home-row{
     max-width: 1200px;
     margin: 0 auto;
+  }
+  .layout-nav{
+    width: 520px;
+    margin: 0 auto;
+    margin-right: 20px;
+  }
+  .ad-card{
+    font-size: 50px;
+    width: 100%;
+    color: #fff;
+    height: 250px;
+    border: 0px;
+  }
+  .ad-card:hover{
+    transform: scale(1.05);
+  }
+  .ad-title{
+    font-size: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .md-wrapper{
+    overflow: hidden;
+    width: 100%;
+    padding: 0px 10px;
+  }
+  .body{
+    min-height: 100%;
   }
 </style>

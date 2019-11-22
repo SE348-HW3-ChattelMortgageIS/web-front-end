@@ -25,7 +25,8 @@
     text-align: center;
   }
   .ebk-logo{
-    background: url("../../assets/ebook-logo.svg");
+    background: url("../../assets/ebook-logo.png");
+    background-size:55px 55px;
     height: 55px;
     width: 55px;
     float: left;
@@ -44,26 +45,26 @@
             <img class="ebk-logo"><p style="font-size: 30px; font-weight: bolder; color: #fff">CMIS动产抵押系统</p>
           </div>
           </router-link>
-          <div class="layout-nav" style="width: 700px;">
-            <router-link to="/search_for/-">
+          <div class="layout-nav" style="width: 450px;">
+            <router-link to="/collections">
             <MenuItem name="1-2">
               <Icon type="ios-book" />
-              <span>图书搜索</span>
+              <span>申请抵押</span>
             </MenuItem>
             </router-link>
             <router-link to="/market">
               <MenuItem name="1-3">
                 <Icon type="md-apps" />
-                <span>分类浏览</span>
+                <span>申请赎回</span>
               </MenuItem>
             </router-link>
-            <router-link  to="/collections">
-            <MenuItem name="1-5">
-              <Icon type="md-albums" />
-              <span>收藏夹</span>
-            </MenuItem>
-            </router-link>
-            <Chart></Chart>
+            <!--<router-link  to="/collections">-->
+            <!--<MenuItem name="1-5">-->
+              <!--<Icon type="md-albums" />-->
+              <!--<span>收藏夹</span>-->
+            <!--</MenuItem>-->
+            <!--</router-link>-->
+            <!--<Chart></Chart>-->
             <el-switch
               style="float: right; margin-right: -55px; margin-top: 20px;"
               v-model="isDark"
@@ -87,7 +88,7 @@
       <Content>
         <router-view></router-view>
       </Content>
-      <Footer class="layout-footer-center">2019 &copy; Wei Xiao-Miao SE218</Footer>
+      <Footer class="layout-footer-center">2019 &copy; github.com/SE348-HW3-ChattelMortgageIS</Footer>
     </Layout>
   </div>
 </template>
