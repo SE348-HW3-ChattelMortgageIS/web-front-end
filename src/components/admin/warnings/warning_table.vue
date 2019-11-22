@@ -24,7 +24,7 @@
               width="100">
               <template slot-scope="scope">
                 <el-button @click="handleRead(scope.$index,scope.row)" type="text" size="small">查看</el-button>
-                <el-button @click="handleSolve(scope.$index,scope.row)" type="text" size="small">处理</el-button>
+                <!--<el-button @click="handleSolve(scope.$index,scope.row)" type="text" size="small">处理</el-button>-->
               </template>
             </el-table-column>
           </el-table-column>
@@ -42,23 +42,30 @@ export default {
       oneAlarm: []
     }
   },
-  created: function () {
+  mounted: function () {
     this.loadData()
   },
   methods: {
     loadData: function () {
-      this.$axios({
-        method: 'get',
-        url: '/alarm/get'
-      }).then(response => {
+      // this.$axios({
+      //   method: 'get',
+      //   url: '/alarm/get'
+      // }).then(response => {
+      //   this.data_in = response.data
+      //   console.log(this.data_in)
+      // }).catch(error => {
+      //   JSON.stringify(error)
+      //   console.log(error)
+      // })
+      this.$axios.get('/alarm/get').then(response => {
         this.data_in = response.data.entity
         console.log(this.data_in)
-      }).catch(error => {
-        JSON.stringify(error)
-        console.log(error)
+      }).catch(function (err) {
+        console.log(err)
+        // alert(err)
       })
     },
-    handleRead: function (index, row) {
+    handleRead (index, row) {
       this.$axios({
         method: 'get',
         url: '/alarm/read',
@@ -73,23 +80,23 @@ export default {
         console.log(error)
       })
       this.loadData()
-    },
-    handleSolve: function (index, row) {
-      this.$axios({
-        method: 'get',
-        url: '/alarm/fix',
-        params: {
-          'id': row.alarmId
-        }
-      }).then(response => {
-        this.oneAlarm = response.data.entity
-        console.log(this.oneAlarm)
-      }).catch(error => {
-        JSON.stringify(error)
-        console.log(error)
-      })
-      this.loadData()
     }
+    // handleSolve (index, row) {
+    //   this.$axios({
+    //     method: 'get',
+    //     url: '/alarm/fix',
+    //     params: {
+    //       'id': row.alarmId
+    //     }
+    //   }).then(response => {
+    //     this.oneAlarm = response.data.entity
+    //     console.log(this.oneAlarm)
+    //   }).catch(error => {
+    //     JSON.stringify(error)
+    //     console.log(error)
+    //   })
+    //   this.loadData()
+    // }
 
   }
 }
