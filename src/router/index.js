@@ -32,14 +32,14 @@ const router = new Router({
           component: loadView('user/display/book_detail')
         },
         {
-          path: 'search_for/:keyword',
-          name: 'search_for',
-          component: loadView('user/display/search/search_res')
+          path: 'redeem',
+          name: 'redeem',
+          component: loadView('user/display/redeem/index')
         },
         {
-          path: 'collections',
-          name: 'collections',
-          component: loadView('user/display/collections/collection')
+          path: 'apply_mortgage',
+          name: 'apply_mortgage',
+          component: loadView('user/display/apply_mortgage/index')
         },
         {
           path: 'sell',

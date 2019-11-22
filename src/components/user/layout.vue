@@ -46,13 +46,13 @@
           </div>
           </router-link>
           <div class="layout-nav" style="width: 450px;">
-            <router-link to="/collections">
+            <router-link to="/apply_mortgage">
             <MenuItem name="1-2">
               <Icon type="ios-log-out" />
               <span>申请抵押</span>
             </MenuItem>
             </router-link>
-            <router-link to="/market">
+            <router-link to="/redeem">
               <MenuItem name="1-3">
                 <Icon type="ios-cash-outline" />
                 <span>申请赎回</span>
