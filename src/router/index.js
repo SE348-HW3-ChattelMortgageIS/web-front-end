@@ -82,7 +82,7 @@ const router = new Router({
         {
           path: 'user',
           name: 'ad_user',
-          component: loadView('admin/users/index')
+          component: loadView('admin/warnings/warning_table')
         },
         {
           path: 'order',
