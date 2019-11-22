@@ -32,14 +32,14 @@ const router = new Router({
           component: loadView('user/display/book_detail')
         },
         {
-          path: 'search_for/:keyword',
-          name: 'search_for',
-          component: loadView('user/display/search/search_res')
+          path: 'redeem',
+          name: 'redeem',
+          component: loadView('user/display/redeem/index')
         },
         {
-          path: 'collections',
-          name: 'collections',
-          component: loadView('user/display/collections/collection')
+          path: 'apply_mortgage',
+          name: 'apply_mortgage',
+          component: loadView('user/display/apply_mortgage/index')
         },
         {
           path: 'sell',
@@ -102,10 +102,14 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.name !== 'login' && to.name !== 'register' && to.name.substr(0, 2) !== 'ad') {
     const isLogin = Cookies.get('login')
-    if (isLogin === 'USER' || isLogin === 'ADMIN') {
+    if (isLogin === 'USER') {
       next()
     } else {
-      router.push({name: 'login'})
+      if (isLogin === 'ADMIN') {
+        router.push({name: 'ad_index'})
+      } else {
+        router.push({name: 'login'})
+      }
     }
   } else if (to.name.substr(0, 2) === 'ad') {
     const isLogin = Cookies.get('login')

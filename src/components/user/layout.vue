@@ -41,20 +41,20 @@
       <Header style="z-index: 99">
         <Menu mode="horizontal" theme="dark" active-name="1">
           <router-link to="/">
-          <div class="layout-logo" style="background: rgba(255,255,255,0); margin-top: -10px; width: 350px;">
-            <img class="ebk-logo"><p style="font-size: 30px; font-weight: bolder; color: #fff">CMIS动产抵押系统</p>
+          <div class="layout-logo" style="background: rgba(255,255,255,0); margin-top: -10px; width: 550px;">
+            <img class="ebk-logo"><p style="font-size: 30px; font-weight: bolder; color: #fff">CMIS动产抵押系统 <span style="font-weight: lighter"> 借贷方页面</span></p>
           </div>
           </router-link>
           <div class="layout-nav" style="width: 450px;">
-            <router-link to="/collections">
+            <router-link to="/apply_mortgage">
             <MenuItem name="1-2">
-              <Icon type="ios-book" />
+              <Icon type="ios-log-out" />
               <span>申请抵押</span>
             </MenuItem>
             </router-link>
-            <router-link to="/market">
+            <router-link to="/redeem">
               <MenuItem name="1-3">
-                <Icon type="md-apps" />
+                <Icon type="ios-cash-outline" />
                 <span>申请赎回</span>
               </MenuItem>
             </router-link>

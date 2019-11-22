@@ -2,16 +2,17 @@
   <div style="margin-top: 80px">
     <Divider orientation="left" class="prop">申请抵押</Divider>
     <Row style="max-width: 1200px; margin: 0 auto;">
-      <grid :books="this.books_rec"></grid>
+      <h1>现有钢卷</h1>
+      <rool-table :data_in="this.books_rec"></rool-table>
     </Row>
-    <Page :total="100" style="margin-top: 10px"/>
+    <!--<Page :total="100" style="margin-top: 10px"/>-->
   </div>
 </template>
 <script>
-import grid from '../book_grid'
+import roolTable from './steelroll_table'
 export default {
   components: {
-    grid
+    roolTable
   },
   mounted () {
     this.$axios({
