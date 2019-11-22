@@ -48,13 +48,13 @@
           <div class="layout-nav" style="width: 450px;">
             <router-link to="/collections">
             <MenuItem name="1-2">
-              <Icon type="ios-book" />
+              <Icon type="ios-log-out" />
               <span>申请抵押</span>
             </MenuItem>
             </router-link>
             <router-link to="/market">
               <MenuItem name="1-3">
-                <Icon type="md-apps" />
+                <Icon type="ios-cash-outline" />
                 <span>申请赎回</span>
               </MenuItem>
             </router-link>

@@ -8,14 +8,14 @@
         <router-link to="/collections">
           <Card class="ad-card">
             申请抵押<br>
-            <Icon type="md-pricetags" size="130"/>
+            <Icon type="ios-log-out" size="130"/>
           </Card>
         </router-link>
       </div></Col>
       <Col span="12"><div class="md-wrapper">
         <router-link to="/market">
           <Card class="ad-card">申请赎回<br>
-            <Icon type="md-alert" size="130" />
+            <Icon type="ios-cash-outline" size="130"/>
           </Card>
         </router-link>
       </div></Col>
