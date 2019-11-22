@@ -17,7 +17,8 @@ export default {
   mounted () {
     this.$axios({
       method: 'post',
-      url: '/api/find_book_with_page',
+      url: '/*get_all_redeem_orders*/',
+      // url: '/api/find_book_with_page',
       data: {
         'offset': 0,
         'limit': 8
