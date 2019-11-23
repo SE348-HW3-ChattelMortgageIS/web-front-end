@@ -15,16 +15,20 @@
               label="警报ID"
             ></el-table-column>
             <el-table-column
+              prop="depositReceipt.receiptId"
+              label="存单ID"
+            ></el-table-column>
+            <el-table-column
+              prop="depositReceipt.steelRoll.steelRollId"
+              label="钢卷ID"
+            ></el-table-column>
+            <el-table-column
               prop="alarmState"
               label="状态"
             ></el-table-column>
             <el-table-column
               prop="startAt"
               label="开始时间"
-            ></el-table-column>
-            <el-table-column
-              prop="endAt"
-              label="结束时间"
             ></el-table-column>
             <el-table-column
               fixed="right"

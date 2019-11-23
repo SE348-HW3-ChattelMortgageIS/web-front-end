@@ -68,7 +68,7 @@
         // }
         for (var value of this.data_in) {
           if (value.alarmState === 'UNREAD') {
-            console.log('f')
+            // console.log('f')
             this.alarmCount++
           }
         }
