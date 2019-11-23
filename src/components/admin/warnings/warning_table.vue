@@ -35,7 +35,7 @@
               label="操作"
               width="100">
               <template slot-scope="scope">
-                <el-button @click="handleRead(scope.$index,scope.row)" type="danger" size="small" v-show="scope.row.state===read">查看</el-button>
+                <el-button @click="handleRead(scope.$index,scope.row)" type="danger" size="small" :style="{'backgroundColor': (scope.row.alarmState=='UNREAD'? '#67c23A':'#606266')}">查看</el-button>
                 <!--<el-button @click="handleSolve(scope.$index,scope.row)" type="text" size="small">处理</el-button>-->
               </template>
             </el-table-column>

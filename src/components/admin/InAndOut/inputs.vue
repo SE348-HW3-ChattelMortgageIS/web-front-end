@@ -18,11 +18,11 @@
           prop="steelRoll.steelRollId"
           label="钢卷ID"
         ></el-table-column>
-        <el-table-column
-          prop="inEffect"
-          label="生效状态"
-          :formatter="formatBoolean"
-        ></el-table-column>
+        <!--<el-table-column-->
+          <!--prop="inEffect"-->
+          <!--label="生效状态"-->
+          <!--:formatter="formatBoolean"-->
+        <!--&gt;</el-table-column>-->
         <el-table-column
           prop="receiptState"
           label="存单状态"
@@ -32,7 +32,7 @@
           label="确认操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="handleRead(scope.$index,scope.row)" type="danger" size="small" v-show="scope.row.inEffect===false">确认生效</el-button>
+            <el-button @click="handleRead(scope.$index,scope.row)" type="danger" size="small" :style="{'backgroundColor': (scope.row.inEffect==true? '#67c23A':'#606266')}">确认生效</el-button>
             <!--<el-button @click="handleSolve(scope.$index,scope.row)" type="danger" size="small" :v-show=scope.row.payed>结束</el-button>-->
           </template>
         </el-table-column>
@@ -58,6 +58,13 @@ export default {
     loadData: function () {
       this.$axios.get('/depositmessage').then(response => {
         this.data_in = response.data.entity
+        for (var value of this.data_in) {
+          if (value.receiptState === 'UNFINISHED') {
+            value.inEffect = true
+          } else {
+            value.inEffect = false
+          }
+        }
         console.log(this.data_in)
       }).catch(function (err) {
         console.log(err)
@@ -70,6 +77,15 @@ export default {
         ret = '是' // 根据自己的需求设定
       } else {
         ret = '否'
+      }
+      return ret
+    },
+    formatEffect: function (row, column, cellValue) {
+      var ret = false // 你想在页面展示的值
+      if (cellValue === 'UNFINISHED') {
+        ret = true // 根据自己的需求设定
+      } else {
+        ret = false
       }
       return ret
     },
