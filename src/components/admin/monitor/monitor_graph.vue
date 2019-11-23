@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div style="margin-top: 80px">
+      <p class="search-title">状态监控</p>
+    </div>
     <div id="myChart" :style="{ height: '140px'}"></div>
     <p class="title">伦敦金</p>
     <p class="percent1">{{percent1}}.00%</p>

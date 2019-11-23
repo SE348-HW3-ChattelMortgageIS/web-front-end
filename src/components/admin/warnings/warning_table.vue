@@ -19,11 +19,19 @@
               label="状态"
             ></el-table-column>
             <el-table-column
+              prop="startAt"
+              label="开始时间"
+            ></el-table-column>
+            <el-table-column
+              prop="endAt"
+              label="结束时间"
+            ></el-table-column>
+            <el-table-column
               fixed="right"
               label="操作"
               width="100">
               <template slot-scope="scope">
-                <el-button @click="handleRead(scope.$index,scope.row)" type="text" size="small">查看</el-button>
+                <el-button @click="handleRead(scope.$index,scope.row)" type="danger" size="small" v-show="scope.row.state===read">查看</el-button>
                 <!--<el-button @click="handleSolve(scope.$index,scope.row)" type="text" size="small">处理</el-button>-->
               </template>
             </el-table-column>
@@ -47,16 +55,6 @@ export default {
   },
   methods: {
     loadData: function () {
-      // this.$axios({
-      //   method: 'get',
-      //   url: '/alarm/get'
-      // }).then(response => {
-      //   this.data_in = response.data
-      //   console.log(this.data_in)
-      // }).catch(error => {
-      //   JSON.stringify(error)
-      //   console.log(error)
-      // })
       this.$axios.get('/alarm/get').then(response => {
         this.data_in = response.data.entity
         console.log(this.data_in)
@@ -80,6 +78,7 @@ export default {
         console.log(error)
       })
       this.loadData()
+      this.$router.go(0)
     }
     // handleSolve (index, row) {
     //   this.$axios({

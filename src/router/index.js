@@ -92,7 +92,7 @@ const router = new Router({
         {
           path: 'data',
           name: 'ad_data',
-          component: loadView('admin/monitor/monitor_graph')
+          component: loadView('admin/monitor/monitor2')
         }
       ]
     }

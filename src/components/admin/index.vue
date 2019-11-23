@@ -15,7 +15,10 @@
       <Col span="12"><div class="md-wrapper">
         <router-link to="/admin/user">
         <Card class="ad-card">查看警报<br>
-          <Icon type="md-alert" size="130" />
+          <el-badge :value=this.alarmCount>
+          <!--<el-badge value='2'>-->
+            <Icon type="md-alert" size="130" />
+          </el-badge>
         </Card>
         </router-link>
       </div></Col>
@@ -39,6 +42,45 @@
     </Row>
   </div>
 </template>
+<script>export default {
+  name: 'warning_table',
+  data () {
+    return {
+      data_in: [],
+      alarmCount: 0
+    }
+  },
+  mounted: function () {
+    this.loadData()
+  },
+  methods: {
+    loadData: function () {
+      this.$axios.get('/alarm/get').then(response => {
+        this.data_in = response.data.entity
+        console.log(this.data_in)
+        // console.log(this.data_in.lenth())
+        // for (var i = 0; i < this.data_in.lenth(); i++) {
+        //   console.log('in')
+        //   if (this.data_in[i].alarmState === 'UNREAD') {
+        //     console.log('f')
+        //     this.alarmCount++
+        //   }
+        // }
+        for (var value of this.data_in) {
+          if (value.alarmState === 'UNREAD') {
+            console.log('f')
+            this.alarmCount++
+          }
+        }
+        console.log(this.alarmCount)
+      }).catch(function (err) {
+        console.log(err)
+        // alert(err)
+      })
+    }
+  }
+}
+</script>
 <style scoped>
   .ad-card{
     font-size: 50px;
