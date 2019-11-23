@@ -16,13 +16,8 @@ export default {
   },
   mounted () {
     this.$axios({
-      method: 'post',
-      url: '/*get_all_redeem_orders*/',
-      // url: '/api/find_book_with_page',
-      data: {
-        'offset': 0,
-        'limit': 8
-      },
+      method: 'get',
+      url: '/order/all',
       withCredentials: true
     }).then(response => {
       console.log('API response\n', response)

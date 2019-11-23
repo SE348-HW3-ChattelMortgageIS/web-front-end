@@ -2,8 +2,8 @@
   <div style="margin-top: 80px">
     <Divider orientation="left" class="prop">申请抵押</Divider>
     <Row style="max-width: 1200px; margin: 0 auto;">
-      <h1>现有钢卷</h1>
-      <rool-table :data_in="this.books_rec"></rool-table>
+      <h1 style="font-size:30px">现有钢卷</h1>
+      <rool-table :data_in="rolls"></rool-table>
     </Row>
     <!--<Page :total="100" style="margin-top: 10px"/>-->
   </div>
@@ -16,26 +16,17 @@ export default {
   },
   mounted () {
     this.$axios({
-      method: 'post',
-      url: '/*get_all_steel_rolls*/',
-      data: {
-        'offset': 0,
-        'limit': 8
-      },
+      method: 'get',
+      url: '/findAllSteelRoll',
       withCredentials: true
     }).then(response => {
-      console.log('API response\n', response)
-      this.books_rec = response.data
+      console.log('API response\n', response.data)
+      this.rolls = response.data
     })
   },
   data () {
     return {
-      books_rec: [
-        {
-          name: null,
-          isbn: 1
-        }
-      ]
+      rolls: []
     }
   }
 }
