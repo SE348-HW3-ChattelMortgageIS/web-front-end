@@ -2,8 +2,8 @@
   <div style="margin-top: 80px">
     <Divider orientation="left" class="prop">申请赎回</Divider>
     <Row style="max-width: 1200px; margin: 0 auto;">
-      <h1>现有存单</h1>
-      <rp-table :data_in="this.books_rec"></rp-table>
+      <h1 style="font-size: 30px">现有存单</h1>
+      <rp-table :data_in="this.receipts"></rp-table>
     </Row>
     <!--<Page :total="100" style="margin-top: 10px"/>-->
   </div>
@@ -17,21 +17,16 @@ export default {
   mounted () {
     this.$axios({
       method: 'get',
-      url: '/order/all',
+      url: '/depositmessage',
       withCredentials: true
     }).then(response => {
       console.log('API response\n', response)
-      this.books_rec = response.data
+      this.receipts = response.data.entity
     })
   },
   data () {
     return {
-      books_rec: [
-        {
-          name: null,
-          isbn: 1
-        }
-      ]
+      receipts: []
     }
   }
 }
