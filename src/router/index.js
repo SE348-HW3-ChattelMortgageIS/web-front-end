@@ -77,7 +77,7 @@ const router = new Router({
         {
           path: 'book',
           name: 'ad_book',
-          component: loadView('admin/books/index')
+          component: loadView('admin/InAndOut/inputs')
         },
         {
           path: 'user',
@@ -87,12 +87,12 @@ const router = new Router({
         {
           path: 'order',
           name: 'ad_order',
-          component: loadView('admin/orders/index')
+          component: loadView('admin/InAndOut/outs')
         },
         {
           path: 'data',
           name: 'ad_data',
-          component: loadView('admin/monitor/monitor_graph')
+          component: loadView('admin/monitor/monitor2 ')
         }
       ]
     }
