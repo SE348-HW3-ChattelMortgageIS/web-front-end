@@ -121,6 +121,7 @@ export default {
         withCredentials: true
       }).then(response => {
         console.log(response.data)
+        alert('已添加')
       }).catch(function (err) {
         console.log(err)
         // alert(err)
@@ -136,6 +137,7 @@ export default {
         withCredentials: true
       }).then(response => {
         console.log(response.data)
+        alert('已结束')
       }).catch(function (err) {
         console.log(err)
       })
