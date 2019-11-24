@@ -198,7 +198,7 @@ export default {
         console.log(this.temperature)
         var option = {
           title: {
-            text: '过去七日温湿度'
+            text: '最近50次温湿度'
           },
           tooltip: {
             trigger: 'axis'
