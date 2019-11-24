@@ -13,91 +13,372 @@ export default {
   data () {
     return {
       data_in: [],
-      option: {
-        tooltip: { // 设置悬浮出来的数据及结构
-          trigger: 'axis',
-          show: true,
-          formatter: function (val) { // val.data  是 data这个数组  里面当前悬浮的数字作为下标 对应到data 的一个对象
-            return val[0].data.date + '</br>' + val[0].data.value + '%' // return 是鼠标悬浮着显示的数据及结构
-          }
-        },
-        calculable: true,
-        xAxis: [
-          {
-            type: 'category',
-            boundaryGap: false,
-            data: ['2018-12-09', '2018-12-10'], // 横坐标的值
-            splitLine: {
-              show: false
-            }
-          }
-        ],
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              formatter: '{value}%'
-            },
-            splitLine: {
-              show: false
-            }
-          }
-        ],
-        grid: {
-          left: '60'
-        },
-        series: [
-          {
-            name: '入驻率',
-            type: 'line',
-            smooth: true,
-            itemStyle: {
-              normal: {
-                areaStyle: {
-                  type: 'default',
-                  color: '#D9EFFC'
-                },
-                lineStyle: {
-                  color: '#88CEFE'
-                }
-              }
-            },
-            data: [
-              {
-                value: 20,
-                date: '2018-12-09'
-              },
-              {
-                value: 30,
-                date: '2018-12-10'
-              }
-            ]
-          }
-        ]
-      }
+      temperature: [],
+      humidity: []
+      // option: {
+      //   title: {
+      //     text: '过去七日温湿度'
+      //   },
+      //   tooltip: {
+      //     trigger: 'axis'
+      //   },
+      //   legend: {
+      //     data: ['温度', '湿度']
+      //   },
+      //   toolbox: {
+      //     show: true,
+      //     feature: {
+      //       mark: {show: true},
+      //       dataView: {show: true},
+      //       magicType: {show: true, type: ['line', 'bar']},
+      //       restore: {show: true},
+      //       saveAsImage: {show: true}
+      //     }
+      //   },
+      //   xAxis: [
+      //     {
+      //       type: 'category',
+      //       position: 'bottom',
+      //       boundaryGap: true,
+      //       axisLine: { // 轴线
+      //         show: true,
+      //         lineStyle: {
+      //           color: 'green',
+      //           type: 'solid',
+      //           width: 2
+      //         }
+      //       },
+      //       axisTick: { // 轴标记
+      //         show: true,
+      //         length: 10,
+      //         lineStyle: {
+      //           color: 'red',
+      //           type: 'solid',
+      //           width: 2
+      //         }
+      //       },
+      //       axisLabel: {
+      //         show: true,
+      //         interval: 'auto', // {number}
+      //         //              rotate: 45,
+      //         margin: 8,
+      //         // formatter: '{value}',
+      //         textStyle: {
+      //           color: 'blue',
+      //           fontFamily: 'sans-serif',
+      //           fontSize: 15,
+      //           fontStyle: 'italic',
+      //           fontWeight: 'bold'
+      //         }
+      //       },
+      //       splitLine: {
+      //         show: true,
+      //         lineStyle: {
+      //           color: '#483d8b',
+      //           type: 'dashed',
+      //           width: 1
+      //         }
+      //       },
+      //       splitArea: {
+      //         show: true,
+      //         areaStyle: {
+      //           color: ['rgba(144,238,144,0.3)', 'rgba(135,200,250,0.3)']
+      //         }
+      //       }
+      //       // data: [
+      //       //   '1', '二', '三', '四', '五', '六', '日'
+      //       // ]
+      //     }
+      //   ],
+      //   yAxis: [
+      //     {
+      //       type: 'value',
+      //       position: 'left',
+      //       // min: 0,
+      //       // max: 300,
+      //       splitNumber: 5,
+      //       boundaryGap: [0, 0],
+      //       axisLine: { // 轴线
+      //         show: true,
+      //         lineStyle: {
+      //           color: 'red',
+      //           type: 'dashed',
+      //           width: 1
+      //         }
+      //       },
+      //       axisTick: { // 轴标记
+      //         show: true,
+      //         length: 20,
+      //         lineStyle: {
+      //           color: 'green',
+      //           type: 'solid',
+      //           width: 1
+      //         }
+      //       },
+      //       axisLabel: {
+      //         show: true,
+      //         interval: 'auto', // {number}
+      //         //              rotate: -45,
+      //         margin: 18,
+      //         formatter: '{value}℃', // Template formatter!
+      //         textStyle: {
+      //           color: '#1e90ff',
+      //           fontFamily: 'verdana',
+      //           fontSize: 10,
+      //           fontStyle: 'normal',
+      //           fontWeight: 'bold'
+      //         }
+      //       }
+      //       // splitLine: {
+      //       //   show: true,
+      //       //   lineStyle: {
+      //       //     color: '#483d8b',
+      //       //     type: 'dotted',
+      //       //     width: 2
+      //       //   }
+      //       // },
+      //       // splitArea: {
+      //       //   show: true,
+      //       //   areaStyle: {
+      //       //     color: ['rgba(205,92,92,0.3)', 'rgba(255,215,0,0.3)']
+      //       //   }
+      //       // }
+      //     },
+      //     {
+      //       type: 'value',
+      //       splitNumber: 10,
+      //       axisLabel: {
+      //         formatter: function (value) {
+      //           // Function formatter
+      //           return value + '%'
+      //         }
+      //       },
+      //       splitLine: {
+      //         show: false
+      //       }
+      //     }
+      //   ],
+      //   series: [
+      //     {
+      //       name: '温度',
+      //       type: 'bar',
+      //       itemStyle: {
+      //         normal: {
+      //           color: '#1eb2b5'
+      //         }
+      //       },
+      //       data: this.temperature
+      //     },
+      //     {
+      //       name: '湿度',
+      //       type: 'line',
+      //       yAxisIndex: 1,
+      //       itemStyle: {
+      //         normal: {
+      //           color: '#9F79EE'
+      //         }
+      //       },
+      //       data: this.humidity
+      //     }
+      //   ]
+      // }
     }
   },
-  mounted: function () {
-    // this.loadData()
-    // draw
-    this.draw_tem()
-  },
-  method: {
-    loadData: function () {
-      this.$axios.get('/').then(response => {
-        this.data_in = response.data
+  methods: {
+    loadData () {
+      this.$axios.get('/temp').then(response => {
+        this.data_in = response.data.entity
+        this.temperature = []
+        this.humidity = []
+        for (var value of this.data_in) {
+          // console.log('value.Temperature')
+          this.temperature.push(value.Temperature)
+          this.humidity.push(value.humidity)
+        }
+        console.log(this.temperature)
+        var option = {
+          title: {
+            text: '最近50次温湿度'
+          },
+          tooltip: {
+            trigger: 'axis'
+          },
+          legend: {
+            data: ['温度', '湿度']
+          },
+          toolbox: {
+            show: true,
+            feature: {
+              mark: {show: true},
+              dataView: {show: true},
+              magicType: {show: true, type: ['line', 'bar']},
+              restore: {show: true},
+              saveAsImage: {show: true}
+            }
+          },
+          xAxis: [
+            {
+              type: 'category',
+              position: 'bottom',
+              boundaryGap: true,
+              axisLine: { // 轴线
+                show: true,
+                lineStyle: {
+                  color: 'green',
+                  type: 'solid',
+                  width: 2
+                }
+              },
+              axisTick: { // 轴标记
+                show: true,
+                length: 10,
+                lineStyle: {
+                  color: 'red',
+                  type: 'solid',
+                  width: 2
+                }
+              },
+              axisLabel: {
+                show: true,
+                interval: 'auto', // {number}
+                //              rotate: 45,
+                margin: 8,
+                // formatter: '{value}',
+                textStyle: {
+                  color: 'blue',
+                  fontFamily: 'sans-serif',
+                  fontSize: 15,
+                  fontStyle: 'italic',
+                  fontWeight: 'bold'
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: '#483d8b',
+                  type: 'dashed',
+                  width: 1
+                }
+              },
+              splitArea: {
+                show: true,
+                areaStyle: {
+                  color: ['rgba(144,238,144,0.3)', 'rgba(135,200,250,0.3)']
+                }
+              }
+              // data: [
+              //   '1', '二', '三', '四', '五', '六', '日'
+              // ]
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              position: 'left',
+              // min: 0,
+              // max: 300,
+              splitNumber: 5,
+              boundaryGap: [0, 0],
+              axisLine: { // 轴线
+                show: true,
+                lineStyle: {
+                  color: 'red',
+                  type: 'dashed',
+                  width: 1
+                }
+              },
+              axisTick: { // 轴标记
+                show: true,
+                length: 20,
+                lineStyle: {
+                  color: 'green',
+                  type: 'solid',
+                  width: 1
+                }
+              },
+              axisLabel: {
+                show: true,
+                interval: 'auto', // {number}
+                //              rotate: -45,
+                margin: 18,
+                formatter: '{value}℃', // Template formatter!
+                textStyle: {
+                  color: '#1e90ff',
+                  fontFamily: 'verdana',
+                  fontSize: 10,
+                  fontStyle: 'normal',
+                  fontWeight: 'bold'
+                }
+              }
+              // splitLine: {
+              //   show: true,
+              //   lineStyle: {
+              //     color: '#483d8b',
+              //     type: 'dotted',
+              //     width: 2
+              //   }
+              // },
+              // splitArea: {
+              //   show: true,
+              //   areaStyle: {
+              //     color: ['rgba(205,92,92,0.3)', 'rgba(255,215,0,0.3)']
+              //   }
+              // }
+            },
+            {
+              type: 'value',
+              splitNumber: 10,
+              axisLabel: {
+                formatter: function (value) {
+                  // Function formatter
+                  return value + '%'
+                }
+              },
+              splitLine: {
+                show: false
+              }
+            }
+          ],
+          series: [
+            {
+              name: '温度',
+              type: 'bar',
+              itemStyle: {
+                normal: {
+                  color: '#1eb2b5'
+                }
+              },
+              data: this.temperature
+            },
+            {
+              name: '湿度',
+              type: 'line',
+              yAxisIndex: 1,
+              itemStyle: {
+                normal: {
+                  color: '#9F79EE'
+                }
+              },
+              data: this.humidity
+            }
+          ]
+        }
+        this.draw_tem(option)
         // 写入option里
-        // this.option =
-        console.log(this.data_in)
+        // this.option.series.push()
       }).catch(function (err) {
         console.log(err)
         // alert(err)
       })
     },
-    draw_tem () {
+    draw_tem (opt) {
       let myChart = this.$echarts.init(document.getElementById('myChart'))
-      myChart.setOption(this.option)
+      myChart.setOption(opt)
     }
+  },
+  mounted: function () {
+    this.loadData()
+    // draw
   }
 }
 </script>
