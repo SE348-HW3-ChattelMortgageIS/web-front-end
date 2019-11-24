@@ -100,6 +100,7 @@ export default {
         withCredentials: true
       }).then(response => {
         console.log(response.data)
+        alert('已确认')
       }).catch(function (err) {
         console.log(err)
       })
